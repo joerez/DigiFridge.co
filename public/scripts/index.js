@@ -1,5 +1,11 @@
 $(document).ready(() => {
 
-  console.log("We're good.");
+    $( function() {
+      $( "#sortable" ).sortable();
+    } );
+
+    $("#reveal").on("click", function() {
+      $("#come").removeClass('hidden').addClass('animated fadeInDown');
+    });
 
 })
