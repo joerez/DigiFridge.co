@@ -28,6 +28,6 @@ app.post('/', (req, res) => {
   });
 })
 
-app.listen(Process.env.PORT || '3000', (err) => {
+app.listen(process.env.PORT || '3000', (err) => {
   console.log("Listening on Port 3000");
 });
