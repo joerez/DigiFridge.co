@@ -19,7 +19,7 @@ block body
   center  
     .myDiv
       h3.titleText Sentence Maker 
-      button.btn.btn-primary#reveal Create Sentence
+      button.btn.btn-primary#reveal Add A Word
       .hidden#come
         form(method="Post").lineIt
           input#inputone(placeholder="Put Word Here" name="paragraph")
@@ -27,6 +27,6 @@ block body
 
   .section2#sortable
     each paragraph in paragraphs
-      .parabox
+      .parabox.animated.fadeInDownBig
         p.paratext= paragraph.text
  
