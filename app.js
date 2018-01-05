@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 let Paragraph = require('./models/paragraph');
-mongoose.connect('localhost:27017/parasaverDb', (err)=>{
+mongoose.connect(process.env.MONGO_URI || 'localhost:27017/parasaverDb', (err)=>{
   console.log("Connected to Parasaver DB");
 })
 
