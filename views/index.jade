@@ -10,7 +10,7 @@ block head
   link(href='index.css' rel='stylesheet')
   script(src="https://code.jquery.com/jquery-1.12.4.js")
   script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
-
+  script(src="touch.js")
   script(src='index.js')
   
 block body
@@ -24,7 +24,7 @@ block body
         form(method="Post").lineIt
           input#inputone(placeholder="Put Word Here" name="paragraph")
           button.btn.btn-primary#subButton(type ="submit") Submit
-
+      p.titleText2 Drag the words and phrases down below to create a story!
   .section2#sortable
     each paragraph in paragraphs
       .parabox.animated.fadeIn
