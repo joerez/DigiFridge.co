@@ -10,8 +10,9 @@ $(document).ready(() => {
    // helper is higher than all other draggables.
    start: function ( e, ui ) {
        $( ".ui-draggable" ).not( ui.helper.css( "z-index", "1" ) )
-                           .css( "z-index", "0" );
-   }
+       .css( "z-index", "0" );
+     },
+        scroll: true
       });
     });
 

@@ -46,6 +46,10 @@ and (max-device-width : 667px) {
   width: 500px;
   border-radius: 10px;
   color: #2c3e50;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .titleText {
@@ -90,6 +94,9 @@ input {
   border-radius: 15px;
   text-align: center;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .hidden {
