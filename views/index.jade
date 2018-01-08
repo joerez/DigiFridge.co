@@ -14,19 +14,18 @@ block head
   script(src='index.js')
   
 block body
-  h1.go hey
-    
+ .fridge
   center  
     .myDiv
-      h3.titleText Sentence Maker 
+      h3.titleText Fridge Magnets
       button.btn.btn-primary#reveal Add A Word
       .hidden#come
         form(method="Post").lineIt
           input#inputone(placeholder="Put Word Here" name="paragraph")
           button.btn.btn-primary#subButton(type ="submit") Submit
-      p.titleText2 Drag the words and phrases down below to create a story!
-  .section2#sortable
+      p.titleText2 Move Your Fridge Magnets Below by clicking and dragging!
+  .section2
     each paragraph in paragraphs
-      .parabox.animated.fadeIn
+      .parabox.animated.fadeIn.draggable
         p.paratext= paragraph.text
  
