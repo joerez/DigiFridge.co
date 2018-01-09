@@ -12,12 +12,35 @@ $(document).ready(() => {
        $( ".ui-draggable" ).not( ui.helper.css( "z-index", "1" ) )
        .css( "z-index", "0" );
      },
-        scroll: true
+        scroll: true,
       });
     });
 
     $("#reveal").on("click", function() {
       $("#come").removeClass('hidden').addClass('animated fadeInDown');
     });
+
+    $( ".parabox").mousedown(function() {
+      $(this).addClass('shadowit');
+    });
+
+    $( ".parabox").mouseup(function() {
+      $(this).removeClass('shadowit');
+    });
+
+    $( ".myDiv").mousedown(function() {
+      $(this).addClass('shadowit');
+    });
+
+    $( ".myDiv").mouseup(function() {
+      $(this).removeClass('shadowit');
+    });
+
+  /*  $(document).on('keydown', function(e){
+        if(e.which == 68){
+          $(".myDiv").addClass('deleteit');
+        });
+        */
+
 
 })
