@@ -1,4 +1,4 @@
-# DigiFridge
+# DigiFridge.co
 DigiFridge is the ultimate hipster hub for keeping track of things and communicating with co-workers.
 
 ## Personal Fridges
