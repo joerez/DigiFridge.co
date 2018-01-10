@@ -106,8 +106,8 @@ input {
 }
 
 .deleteit {
-  box-shadow: 0px 5px 20px rgba(200, 0, 0, 0.7);
-  cursor: move;
+  box-shadow: 0px 0px 11px 4px rgba(186,17,17,1);
+  cursor: pointer;
 }
 
 .hidden {
