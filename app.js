@@ -28,6 +28,10 @@ app.post('/', (req, res) => {
   });
 })
 
+app.get('/testfridge', (req, res) => {
+  res.render('fridge');
+})
+
 app.listen(process.env.PORT || '3000', (err) => {
   console.log("Listening on Port 3000");
 });

@@ -1,0 +1,96 @@
+.fridge {
+  height: 1500px;
+  width: 700px;
+  background-color: purple;
+  position: relative;
+
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+  top: 25px;
+  left: 25px;
+  right: ;
+  bottom: 25px;
+}
+
+.topdrawer {
+
+  width: 100%;
+  border-style: solid;
+  border-color: black;
+  border-width: 15px;
+  height: 600px;
+  position: relative;
+}
+
+
+.bottomdrawyer {
+  border: solid 15px black;
+  border-top: solid 8px black;
+  height: 898px;
+  width: 100%;
+  position: relative;
+}
+
+.handle {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border: none;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #1abc9c;
+  margin-left: 480px;
+  margin-top: 400px;
+}
+
+#lowhand {
+  margin-top: 600px;
+}
+
+.handle::before {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  content: "";
+  top: 70px;
+  left: -10px;
+  border: 40px solid rgba(0,0,0,0);
+  border-top: 0 solid;
+  border-bottom: 70px solid #1abc9c;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: none;
+  -webkit-transform: rotateZ(-140deg)   ;
+  transform: rotateZ(-140deg)   ;
+}
+
+.handle::after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  content: "";
+  top: 70px;
+  right: -10px;
+  border: 40px solid rgba(0,0,0,0);
+  border-top: 0 solid;
+  border-bottom: 70px solid #1abc9c;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: none;
+  -webkit-transform: rotateZ(140deg)   ;
+  transform: rotateZ(140deg)   ;
+}

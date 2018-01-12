@@ -22,18 +22,25 @@ $(document).ready(() => {
 
     $( ".parabox").mousedown(function() {
       $(this).addClass('shadowit');
+      $(this).addClass('scale');
     });
 
     $( ".parabox").mouseup(function() {
       $(this).removeClass('shadowit');
+      $(this).removeClass('scale');
+
     });
 
     $( ".myDiv").mousedown(function() {
       $(this).addClass('shadowit');
+      $(this).addClass('scale');
+
     });
 
     $( ".myDiv").mouseup(function() {
       $(this).removeClass('shadowit');
+      $(this).removeClass('scale');
+
     });
 
   /*  $(document).on('keydown', function(e){
