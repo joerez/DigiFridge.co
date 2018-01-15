@@ -1,5 +1,7 @@
 $(document).ready(() => {
 
+    var socket = io.connect('http://localhost:3000');
+
     $( function() {
       $( "#sortable" ).sortable();
     } );
@@ -23,6 +25,7 @@ $(document).ready(() => {
     $( ".parabox").mousedown(function() {
       $(this).addClass('shadowit');
       $(this).addClass('scale');
+      socket.emit('btnClick', {id : $(this).attr('id')});
     });
 
     $( ".parabox").mouseup(function() {
@@ -49,5 +52,8 @@ $(document).ready(() => {
         });
         */
 
+    socket.on('btnClick', (data) => {
+      console.log("Clicked " + data.id);
+    })
 
 })

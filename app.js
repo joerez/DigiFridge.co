@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -9,6 +11,7 @@ app.use(express.static('public/css'));
 app.use(express.static('public/scripts'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
+require('./sockets/server-sockets')(io);
 
 let Paragraph = require('./models/paragraph');
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/parasaverDb', (err)=>{
@@ -32,6 +35,6 @@ app.get('/testfridge', (req, res) => {
   res.render('fridge');
 })
 
-app.listen(process.env.PORT || '3000', (err) => {
+server.listen(process.env.PORT || '3000', (err) => {
   console.log("Listening on Port 3000");
 });

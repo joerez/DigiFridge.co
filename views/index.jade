@@ -16,7 +16,7 @@ block body
       p.titleText2 Move Your Fridge Magnets Below by clicking and dragging!
   .section2
     each paragraph in paragraphs
-      .parabox.animated.fadeIn.draggable
+      .parabox.animated.fadeIn.draggable(id=paragraph._id)
         p.paratext= paragraph.text
  
   .trash.draggable
