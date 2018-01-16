@@ -1,6 +1,6 @@
 $(document).ready(() => {
 
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect('');
 
     $( function() {
       $( "#sortable" ).sortable();
@@ -14,6 +14,10 @@ $(document).ready(() => {
        $( ".ui-draggable" ).not( ui.helper.css( "z-index", "1" ) )
        .css( "z-index", "0" );
      },
+   drag: function (e, ui ) { //On Drag
+        socket.emit('updateBoxPos', {id : e.target.id, pos : {top : $(this).css('top'), left : $(this).css('left')}});
+     },
+
         scroll: true,
       });
     });
@@ -25,13 +29,13 @@ $(document).ready(() => {
     $( ".parabox").mousedown(function() {
       $(this).addClass('shadowit');
       $(this).addClass('scale');
-      socket.emit('btnClick', {id : $(this).attr('id')});
+      socket.emit('mouseDownBox', {id : $(this).attr('id')});
     });
 
     $( ".parabox").mouseup(function() {
       $(this).removeClass('shadowit');
       $(this).removeClass('scale');
-
+      socket.emit('mouseUpBox', {id : $(this).attr('id')});
     });
 
     $( ".myDiv").mousedown(function() {
@@ -52,8 +56,17 @@ $(document).ready(() => {
         });
         */
 
-    socket.on('btnClick', (data) => {
-      console.log("Clicked " + data.id);
+    socket.on('mouseDownBox', (data) => {
+      $('#' + data.id).addClass('shadowit scale');
+    })
+
+    socket.on('mouseUpBox', (data) => {
+      $('#' + data.id).removeClass('shadowit scale');
+    })
+
+    socket.on('updateBoxPos', (data) => {
+      $('#' + data.id).css('left', data.pos.left);
+      $('#' + data.id).css('top', data.pos.top);
     })
 
 })

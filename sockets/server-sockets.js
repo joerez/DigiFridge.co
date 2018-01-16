@@ -4,9 +4,16 @@ module.exports = (io) => {
 
     console.log("New User Connected.");
 
-    socket.on('btnClick', (data) => {
-      console.log("Clicked " + data.id);
-      socket.broadcast.emit('btnClick', {id : data.id});
+    socket.on('mouseDownBox', (data) => {
+      socket.broadcast.emit('mouseDownBox', {id : data.id});
+    })
+
+    socket.on('mouseUpBox', (data) => {
+      socket.broadcast.emit('mouseUpBox', {id : data.id});
+    })
+
+    socket.on('updateBoxPos', (data) => {
+      socket.broadcast.emit('updateBoxPos', {id : data.id, pos : data.pos});
     })
 
   });
