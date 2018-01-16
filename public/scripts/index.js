@@ -2,6 +2,14 @@ $(document).ready(() => {
 
     var socket = io.connect('');
 
+    socket.emit('loadBoxes');
+    socket.on('loadBoxes', (data) => {
+      data.boxes.forEach((box) => {
+        $('#' + box.id).css('left', box.pos.left);
+        $('#' + box.id).css('top', box.pos.top);
+      })
+    })
+
     $( function() {
       $( "#sortable" ).sortable();
     } );
@@ -35,7 +43,12 @@ $(document).ready(() => {
     $( ".parabox").mouseup(function() {
       $(this).removeClass('shadowit');
       $(this).removeClass('scale');
-      socket.emit('mouseUpBox', {id : $(this).attr('id')});
+      socket.emit('mouseUpBox', {id : $(this).attr('id'),
+                                 pos : {
+                                        top : $(this).css('top'),
+                                        left : $(this).css('left')
+                                       }
+                                 });
     });
 
     $( ".myDiv").mousedown(function() {

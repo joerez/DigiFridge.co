@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
 const ParagraphSchema = new mongoose.Schema({
-  text : String
-})
+  text : String,
+  pos : {
+    top : String,
+    left : String
+  }
+});
 
 let Paragraph = mongoose.model("Paragraph", ParagraphSchema);
 
