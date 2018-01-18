@@ -149,3 +149,7 @@ form {
 .prototype {
   display : None;
 }
+
+.notanything {
+  display: none;
+}
