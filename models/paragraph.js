@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ParagraphSchema = new mongoose.Schema({
-  text : String,
+  text : { type: String, minlength: 1 },
   pos : {
     top : String,
     left : String
