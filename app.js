@@ -24,12 +24,12 @@ app.get('/', (req, res) =>  {
   })
 });
 
-app.post('/', (req, res) => {
-  let paragraph = new Paragraph({text : req.body.paragraph});
-  paragraph.save((err)=>{
-    res.redirect('/');
-  });
-})
+// app.post('/', (req, res) => {
+//   let paragraph = new Paragraph({text : req.body.paragraph});
+//   paragraph.save((err)=>{
+//     res.redirect('/');
+//   });
+// })
 
 app.get('/testfridge', (req, res) => {
   res.render('fridge');

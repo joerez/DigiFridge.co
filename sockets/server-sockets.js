@@ -9,6 +9,13 @@ module.exports = (io) => {
       });
     })
 
+    socket.on('newBox', (data) => {
+      let paragraph = new Paragraph({text : data.text, pos : data.pos});
+      paragraph.save((err, thisP) => {
+        io.emit('newBox', {box : thisP});
+      })
+    })
+
     socket.on('mouseDownBox', (data) => {
       socket.broadcast.emit('mouseDownBox', {id : data.id});
     })
@@ -16,7 +23,6 @@ module.exports = (io) => {
     socket.on('mouseUpBox', (data) => {
       socket.broadcast.emit('mouseUpBox', {id : data.id});
       Paragraph.findById(data.id, (err, paragraph) => {
-        console.log(paragraph);
         paragraph.pos = data.pos;
         paragraph.save();
       })

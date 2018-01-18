@@ -145,3 +145,7 @@ form {
   transform: scale(1.1);
 
 }
+
+.prototype {
+  display : None;
+}

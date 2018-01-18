@@ -10,13 +10,13 @@ block body
       h3.titleText Fridge Magnets
       button.btn.btn-primary#reveal Add A Word
       .hidden#come
-        form(method="Post").lineIt
+        form.lineIt
           input#inputone(placeholder="Put Word Here" name="paragraph")
-          button.btn.btn-primary#subButton(type ="submit") Submit
+          button.btn.btn-primary#subButton Submit
       p.titleText2 Move Your Fridge Magnets Below by clicking and dragging!
   .section2
-    each paragraph in paragraphs
-      .parabox.animated.fadeIn.draggable(id=paragraph._id)
-        p.paratext= paragraph.text
+    .parabox.animated.fadeIn.draggable.prototype
+      p.paratext
+
  
   .trash.draggable
