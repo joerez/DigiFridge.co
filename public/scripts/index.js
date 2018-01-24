@@ -5,15 +5,20 @@ $(document).ready(() => {
     socket.emit('loadBoxes');
     socket.on('loadBoxes', (data) => {
       data.boxes.forEach((box) => {
-        let newBox = $('.parabox.animated.fadeIn.draggable.prototype').clone(true);
+        let newBox = $('.parabox.draggable.prototype').clone(true);
         newBox.children('.paratext').text(box.text);
         newBox.removeClass('prototype');
         newBox.attr('id', box._id);
-        newBox.appendTo('.section2');
+        newBox.appendTo('.fridge');
         newBox.css('left', box.pos.left);
         newBox.css('top', box.pos.top);
         makeDrag(newBox);
       })
+    })
+
+
+    $('#subButton').on("click", function() {
+      $('#inputone').val(" ");
     })
 
 
@@ -84,7 +89,7 @@ $(document).ready(() => {
 
 
 
-    scaleIt(".myDiv");
+    scaleIt("#wordaddbox");
 
 
     //This function makes Selectors pretty when moving.
@@ -104,12 +109,12 @@ $(document).ready(() => {
     }
 
 //Trash can scaling on drag
-    $(".trash").mousedown(function() {
+    $("#trashcan").mousedown(function() {
       $(this).addClass('scale');
 
     });
 
-    $(".trash").mouseup(function() {
+    $("#trashcan").mouseup(function() {
       $(this).removeClass('scale');
 
     });
@@ -122,7 +127,7 @@ $(document).ready(() => {
       e.preventDefault();
       let pText = $('#inputone').val();
       console.log(pText);
-      let newBox = $('.parabox.animated.fadeIn.draggable.prototype').clone(true);
+      let newBox = $('.parabox.animated.pulse.draggable.prototype').clone(true);
       socket.emit('newBox', {text : pText, pos : {left : newBox.css('left'), top : newBox.css('top')}})
     });
     //
@@ -138,7 +143,7 @@ $(document).ready(() => {
         */
 
     socket.on('newBox', (data) => {
-      let newBox = $('.parabox.animated.fadeIn.draggable.prototype').clone(true);
+      let newBox = $('.parabox.animated.pulse.draggable.prototype').clone(true);
       newBox.children('.paratext').text(data.box.text);
       newBox.removeClass('prototype');
       newBox.attr('id', data.box._id);
@@ -157,6 +162,10 @@ $(document).ready(() => {
     socket.on('updateBoxPos', (data) => {
       $('#' + data.id).css('left', data.pos.left);
       $('#' + data.id).css('top', data.pos.top);
+    })
+
+    $("#addWordBtn").on("click", function() {
+      $(".myDiv").toggleClass("prototype");
     })
 
 })

@@ -4,19 +4,22 @@ block head
 
   
 block body
- .fridge
-  center  
-    .myDiv.draggable
-      h3.titleText DigiFridge - Mother Fridge
-      button.btn.btn-primary#reveal Add A Word
-      .hidden#come
-        form.lineIt
-          input#inputone(placeholder="Put Word Here" name="paragraph" minlength="1")
-          button.btn.btn-primary#subButton Submit
-      p.titleText2 Move Your Fridge Magnets Below by clicking and dragging!
-   .section2
-    .parabox.animated.fadeIn.draggable.prototype
-      p.paratext
+  .navbar
+    .brand DigiFridge
 
- 
-  .trash.draggable.droppable
+    a.nav-link.btn#addWordBtn Add Word
+  .fridge
+    center  
+      .myDiv.draggable#wordaddbox
+        h3.titleText DigiFridge.co
+        form.lineIt
+          input#inputone(placeholder="Add New Word" name="paragraph" minlength="1")
+          button.btn.btn-primary#subButton Submit
+        p.titleText2 Move Your Fridge Magnets by clicking and dragging!
+        
+    .section2
+      .parabox.draggable.prototype#wordbox
+        p.paratext
+
+   
+    .trash.draggable.droppable#trashcan

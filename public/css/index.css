@@ -102,7 +102,14 @@ input {
   border-style: solid;
   transform: scale(1);
   transition: .2s transform;
+  width: auto;
+  display: inline-block;
 }
+
+.paratext {
+  width: auto;
+}
+
 
 .shadowit {
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
@@ -143,7 +150,6 @@ form {
 .scale {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-
 }
 
 .prototype {
@@ -161,4 +167,19 @@ form {
   background-size: contain;
   background-repeat: no-repeat;
   transition: .2s transform;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: #ecf0f1;
+}
+
+.navbar a {
+  background: #95a5a6;
+}
+
+.navbar a:hover {
+  background: #bdc3c7;
 }
