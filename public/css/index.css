@@ -25,7 +25,7 @@ body {
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
   .fridge {
-    padding-top: 120px;
+    padding-top: 0px;
   }
   .wordAdder {
     margin-bottom: 300px;
