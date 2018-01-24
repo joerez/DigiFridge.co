@@ -14,7 +14,7 @@ body {
   background-attachment: scroll;
 }
 
-.myDiv {
+.wordAdder {
   margin-top: 70px;
   margin-bottom: 230px;
 }
@@ -25,7 +25,7 @@ and (max-device-width : 667px) {
   .fridge {
     padding-top: 120px;
   }
-  .myDiv {
+  .wordAdder {
     margin-bottom: 300px;
   }
 }
@@ -37,7 +37,7 @@ and (max-device-width : 667px) {
 
 }
 
-.myDiv {
+.wordAdder {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -92,7 +92,6 @@ input {
   align-items: center;
   background-color: #e67e22;
   padding: 10px 10px 0px 10px;
-  margin-top: 10px;
   margin-right: 3px;
   border-radius: 15px;
   text-align: center;
@@ -104,6 +103,9 @@ input {
   transition: .2s transform;
   width: auto;
   display: inline-block;
+  position: absolute;
+  top: auto;
+  left: auto;
 }
 
 .paratext {
@@ -160,8 +162,8 @@ form {
   position: absolute;
   height: 130px;
   width: 80px;
-  top: 300px;
-  left: 600px;
+  top: 240px;
+  left: 300px;
   background: url('https://openclipart.org/image/2400px/svg_to_png/178545/trash-bin-empty.png');
   background-position: center;
   background-size: contain;
@@ -169,17 +171,16 @@ form {
   transition: .2s transform;
 }
 
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background: #ecf0f1;
+
+#mynavbar {
+
 }
 
-.navbar a {
-  background: #95a5a6;
+#brandtext {
+  color: #e67e22;
 }
 
-.navbar a:hover {
-  background: #bdc3c7;
+#brandtext:hover{
+  color: #c0392b;
+  background-color: #ecf0f1;
 }

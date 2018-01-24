@@ -5,10 +5,14 @@ const io = require('socket.io')(server);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-app.set('view engine', 'jade');
-app.use(express.static('views'));
+var exphbs = require('express-handlebars');
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+//app.use(express.static('views'));
 app.use(express.static('public/css'));
 app.use(express.static('public/scripts'));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 require('./sockets/server-sockets')(io);
@@ -20,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI || 'localhost:27017/parasaverDb', (err)=>
 
 app.get('/', (req, res) =>  {
   Paragraph.find({}, (err, paragraphs) =>{
-    res.render('index', {paragraphs : paragraphs});
+    res.render('mother-fridge', {paragraphs : paragraphs});
   })
 });
 

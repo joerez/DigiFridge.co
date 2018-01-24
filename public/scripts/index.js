@@ -10,6 +10,7 @@ $(document).ready(() => {
         newBox.removeClass('prototype');
         newBox.attr('id', box._id);
         newBox.appendTo('.fridge');
+        console.log(box);
         newBox.css('left', box.pos.left);
         newBox.css('top', box.pos.top);
         makeDrag(newBox);
@@ -24,7 +25,7 @@ $(document).ready(() => {
 
 
     //Making different things draggable
-    let wordAdderBox = $(".myDiv.draggable");
+    let wordAdderBox = $(".wordAdder.draggable");
     makeDrag(wordAdderBox);
 
     let wordDeleter = $(".trash.draggable.droppable");
@@ -138,7 +139,7 @@ $(document).ready(() => {
 
   /*  $(document).on('keydown', function(e){
         if(e.which == 68){
-          $(".myDiv").addClass('deleteit');
+          $(".wordAdder").addClass('deleteit');
         });
         */
 
@@ -165,7 +166,7 @@ $(document).ready(() => {
     })
 
     $("#addWordBtn").on("click", function() {
-      $(".myDiv").toggleClass("prototype");
+      $(".wordAdder").toggleClass("prototype");
     })
 
 })
