@@ -35,6 +35,12 @@ $(document).ready(() => {
 /***Jquery UI things ***/
 
     $( function() {
+      $( "#resizable" ).resizable();
+    } );
+
+
+
+    $( function() {
       $( "#sortable" ).sortable();
     } );
 
@@ -66,6 +72,8 @@ $(document).ready(() => {
         });
       });
     }
+
+    makeDrag(".iffy");
 
     $("#reveal").on("click", function() {
       $("#come").removeClass('hidden').addClass('animated fadeInDown');
