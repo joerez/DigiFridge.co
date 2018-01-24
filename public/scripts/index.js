@@ -16,9 +16,32 @@ $(document).ready(() => {
       })
     })
 
+
+
+    //Making different things draggable
+    let wordAdderBox = $(".myDiv.draggable");
+    makeDrag(wordAdderBox);
+
+    let wordDeleter = $(".trash.draggable.droppable");
+    makeDrag(wordDeleter);
+
+
+/***Jquery UI things ***/
+
     $( function() {
       $( "#sortable" ).sortable();
     } );
+
+    $( function() {
+      $( ".droppable" ).droppable({
+        drop: function( event, ui ) {
+        $( ui.draggable )
+          .addClass( "prototype" );
+      }
+      });
+    } );
+
+/*** END of Jquery UI things ***/
 
     function makeDrag(box){
       $( function() {
@@ -59,17 +82,40 @@ $(document).ready(() => {
                                  });
     });
 
-    $( ".myDiv").mousedown(function() {
-      $(this).addClass('shadowit');
+
+
+    scaleIt(".myDiv");
+
+
+    //This function makes Selectors pretty when moving.
+    function scaleIt(box) {
+
+      $(box).mousedown(function() {
+        $(this).addClass('shadowit');
+        $(this).addClass('scale');
+
+      });
+
+      $(box).mouseup(function() {
+        $(this).removeClass('shadowit');
+        $(this).removeClass('scale');
+
+      });
+    }
+
+//Trash can scaling on drag
+    $(".trash").mousedown(function() {
       $(this).addClass('scale');
 
     });
 
-    $( ".myDiv").mouseup(function() {
-      $(this).removeClass('shadowit');
+    $(".trash").mouseup(function() {
       $(this).removeClass('scale');
 
     });
+
+
+
 
     //Prevent lineIt form from refreshing page
     $(".lineIt").on("submit", function (e) {
