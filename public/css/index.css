@@ -4,14 +4,16 @@ body {
 }
 
 .fridge {
-  background-image: url('https://image.ibb.co/gMx2nG/fridge_copy.jpg');
+  background-image: url('https://image.ibb.co/fsnjtb/IMG_3940.jpg');
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
-  background-size: cover;
-  padding-top: 40px;
-  padding-bottom: 100%;
+  width: 100%;
+  background-size: contain;
+  padding-top: 0px;
+  padding-bottom: 220%;
   background-attachment: scroll;
+  position: absolute;
 }
 
 .wordAdder {
