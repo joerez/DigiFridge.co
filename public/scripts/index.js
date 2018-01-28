@@ -179,4 +179,9 @@ $(document).ready(() => {
       $(".wordAdder").toggleClass("prototype");
     })
 
+    $("#delWordBtn").on("click", function() {
+      $("#trashcan").toggleClass("prototype");
+    })
+
+
 })
