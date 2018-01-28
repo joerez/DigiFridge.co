@@ -47,8 +47,10 @@ $(document).ready(() => {
     $( function() {
       $( ".droppable" ).droppable({
         drop: function( event, ui ) {
-        $( ui.draggable )
-          .addClass( "prototype" );
+        $( ui.draggable ).addClass( "prototype" );
+        $( ui.draggable ).submit(function() {
+          $( ui.draggable ).document.location.href = '/' + ui.draggable._id + '?_method=DELETE';
+        })
       }
       });
     } );
