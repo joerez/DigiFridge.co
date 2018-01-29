@@ -1,9 +1,21 @@
 const express = require('express');
+
+require('dotenv').config();
+require('./controllers/auth.js');
+
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+
+
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+
+const Auth = require('./controllers/auth.js')(app);
+const User = require('./models/user');
+
 
 var exphbs = require('express-handlebars');
 
@@ -22,10 +34,28 @@ mongoose.connect(process.env.MONGO_URI || 'localhost:27017/parasaverDb', (err)=>
   console.log("Connected to Parasaver DB");
 })
 
+var checkAuth = (req, res, next) => {
+  console.log("Checking authentication");
+  if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
+    req.user = null;
+  } else {
+    var token = req.cookies.nToken;
+    var decodedToken = jwt.decode(token, { complete: true }) || {};
+    req.user = decodedToken.payload;
+  }
+
+  next()
+}
+
+app.use(checkAuth);
+
 //ROUTE
 app.get('/', (req, res) =>  {
+
+  currentUser = req.User;
+
   Paragraph.find({}, (err, paragraphs) =>{
-    res.render('mother-fridge', {paragraphs : paragraphs});
+    res.render('mother-fridge', {paragraphs : paragraphs, currentUser});
   })
 });
 
@@ -54,7 +84,7 @@ app.get('/testfridge', (req, res) => {
   res.render('fridge');
 })
 
-
+//ROUTES controllers
 
 server.listen(process.env.PORT || '3000', (err) => {
   console.log("Listening on Port 3000");
