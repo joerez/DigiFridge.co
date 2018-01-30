@@ -5,7 +5,8 @@ const ParagraphSchema = new mongoose.Schema({
   pos : {
     top : String,
     left : String
-  }
+  },
+  Location : String
 });
 
 let Paragraph = mongoose.model("Paragraph", ParagraphSchema);

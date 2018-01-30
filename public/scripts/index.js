@@ -17,22 +17,17 @@ $(document).ready(() => {
       })
     })
 
-
+    //Clear the word adding form after hitting submit
+    //to prevent spamming the same word super fast.
     $('#subButton').on("click", function() {
       $('#inputone').val(" ");
     })
 
 
 
-    //Making different things draggable
-    let wordAdderBox = $(".wordAdder.draggable");
-    makeDrag(wordAdderBox);
-
-    let wordDeleter = $(".trash.draggable.droppable");
-    makeDrag(wordDeleter);
 
 
-/***Jquery UI things ***/
+    /***Jquery UI things ***/
 
     $( function() {
       $( "#resizable" ).resizable();
@@ -44,6 +39,7 @@ $(document).ready(() => {
       $( "#sortable" ).sortable();
     } );
 
+    //This is the trash function. Drag items into the trash to delete them.
     $( function() {
       $( ".droppable" ).droppable({
         drop: function( event, ui ) {
@@ -55,41 +51,46 @@ $(document).ready(() => {
       });
     } );
 
-/*** END of Jquery UI things ***/
+    /*** END of Jquery UI things ***/
 
+
+    //Make something draggable function
     function makeDrag(box){
       $( function() {
         $(box).draggable({
           // When the user starts dragging, make sure the z-index for this
-     // helper is higher than all other draggables.
-     start: function ( e, ui ) {
-         $( ".ui-draggable" ).not( ui.helper.css( "z-index", "1" ) )
-         .css( "z-index", "0" );
-       },
-     drag: function (e, ui ) { //On Drag
-          socket.emit('updateBoxPos', {id : e.target.id, pos : {top : $(this).css('top'), left : $(this).css('left')}});
-       },
-
-          scroll: true,
+          // helper is higher than all other draggables.
+          start: function ( e, ui ) {
+            $( ".ui-draggable" ).not( ui.helper.css( "z-index", "1" ) )
+              .css( "z-index", "0" );
+            },
+          drag: function (e, ui ) { //On Drag
+            socket.emit('updateBoxPos', {id : e.target.id, pos : {top : $(this).css('top'), left : $(this).css('left')}});
+          },
+            scroll: false, //Allows scrolling out of page if true.
+          });
         });
-      });
-    }
+      }
+      //End make something draggable function
+
+
+    //Making different things draggable
+    let wordAdderBox = $(".wordAdder.draggable");
+    let wordDeleter = $(".trash.draggable.droppable");
 
     makeDrag(".iffy");
 
-    $("#reveal").on("click", function() {
-      $("#come").removeClass('hidden').addClass('animated fadeInDown');
-    });
+    makeDrag(wordAdderBox);
+
+    makeDrag(wordDeleter);
+    //End make things draggable
+
 
     $( ".parabox").mousedown(function() {
-      $(this).addClass('shadowit');
-      $(this).addClass('scale');
       socket.emit('mouseDownBox', {id : $(this).attr('id')});
     });
 
     $( ".parabox").mouseup(function() {
-      $(this).removeClass('shadowit');
-      $(this).removeClass('scale');
       socket.emit('mouseUpBox', {id : $(this).attr('id'),
                                  pos : {
                                         top : $(this).css('top'),
@@ -99,8 +100,7 @@ $(document).ready(() => {
     });
 
 
-
-    scaleIt("#wordaddbox");
+  
 
 
     //This function makes Selectors pretty when moving.
@@ -119,18 +119,25 @@ $(document).ready(() => {
       });
     }
 
-//Trash can scaling on drag
+    /** -------Things that Scale -----------*/
+
+    scaleIt("#wordaddbox");
+
+    scaleIt(".parabox");
+
+
+
+    /*Trash can scaling on drag
+    Seperate because we don't want box shadow on it.*/
     $("#trashcan").mousedown(function() {
       $(this).addClass('scale');
-
     });
 
     $("#trashcan").mouseup(function() {
       $(this).removeClass('scale');
-
     });
 
-
+    //end things that scale
 
 
     //Prevent lineIt form from refreshing page
@@ -138,23 +145,13 @@ $(document).ready(() => {
       e.preventDefault();
       let pText = $('#inputone').val();
       console.log(pText);
-      let newBox = $('.parabox.animated.pulse.draggable.prototype').clone(true);
+      let newBox = $('.parabox.draggable.prototype').clone(true);
       socket.emit('newBox', {text : pText, pos : {left : newBox.css('left'), top : newBox.css('top')}})
     });
-    //
-    // $('#subButton').click(() =>
-    //
-    //   //socket.emit('newBox', )
-    // })
 
-  /*  $(document).on('keydown', function(e){
-        if(e.which == 68){
-          $(".wordAdder").addClass('deleteit');
-        });
-        */
 
     socket.on('newBox', (data) => {
-      let newBox = $('.parabox.animated.pulse.draggable.prototype').clone(true);
+      let newBox = $('.parabox.draggable.prototype').clone(true);
       newBox.children('.paratext').text(data.box.text);
       newBox.removeClass('prototype');
       newBox.attr('id', data.box._id);
@@ -175,10 +172,16 @@ $(document).ready(() => {
       $('#' + data.id).css('top', data.pos.top);
     })
 
+
+
+    /*****NavBar Buttons ******************************/
+
+    //Word Adder toggler
     $("#addWordBtn").on("click", function() {
       $(".wordAdder").toggleClass("prototype");
     })
 
+    //Trash can toggler
     $("#delWordBtn").on("click", function() {
       $("#trashcan").toggleClass("prototype");
     })
