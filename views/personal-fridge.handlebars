@@ -1,0 +1,37 @@
+<div class="fridge">
+
+  <center>
+
+    <div class="wordAdder draggable" id="wordaddbox">
+
+      <h3 class="titleText">{{currentUser.username}}'s Personal Fridge</h3>
+      <form class="lineIt">
+        <input id="inputone" placeholder="Add New Word" name="paragraph" minlength="1" />
+        <button class="btn btn-primary" id="subButton">Submit</button>
+      </form>
+      <p class="titleText2">Move Your Fridge Magnets by clicking and dragging!</p>
+
+    </div><!--word adder-->
+
+  </center>
+
+  <div class="section2">
+
+    <div class="parabox draggable prototype" id="wordbox">
+
+      <p class="paratext"></p>
+
+    </div> <!--parabox-->
+
+  </div><!--section 2 -->
+  <form class="deleteForm" method="post" action="/{{this._id}}?_method=DELETE">
+  <div class="trash draggable droppable" id="trashcan"></div>
+  </form>
+
+
+
+
+
+
+
+</div> <!--fridge-->

@@ -65,11 +65,7 @@ app.get('/', (req, res) =>  {
   })
 });
 
-app.get('/fridges/:username', (req, res) => {
-  //const username = req.params.username;
-  const { username } = req.params; // {username:"", id:122344}
-  res.render('personal-fridge', {paragraphs, currentUser : req.user})
-})
+
 
 //DELETE
 app.delete('/:id', function (req, res) {
@@ -100,6 +96,8 @@ app.get('/testfridge', (req, res) => {
 
 const Auth = require('./controllers/auth.js')(app);
 const User = require('./models/user');
+
+require('./controllers/personal.js')(app);
 
 
 server.listen(process.env.PORT || '3000', (err) => {
