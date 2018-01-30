@@ -66,7 +66,7 @@ module.exports = (app) => {
   app.post('/sign-up', (req, res) => {
     // Create User and JWT
     const user = new User(req.body);
-
+    console.log(req.body);
     user.save().then((user) => {
     var token = jwt.sign({ _id: user._id, username: user.username }, process.env.SECRET, { expiresIn: "60 days" });
     res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
