@@ -5,13 +5,10 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   createdAt       : { type: Date },
   updatedAt       : { type: Date },
-  password        : { type: String, select: false, maxLength: 20 },
-  username        : { type: String, required: true, maxLength: 16 },
-  posts           : [{ type: Schema.Types.ObjectId, ref: 'Review', required: true }],
-  admin           : { type: Boolean, default: false },
-  banned          : { type : Boolean, default: false }
-  //recaptcha: document.getElementById("g-recaptcha-response").value
-
+  password        : { type: String, select: false },
+  username        : { type: String, required: true },
+  posts           : [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
+  comments        : [{ type: Schema.Types.ObjectId, ref: 'Comment', required: true}]
 });
 
 UserSchema.pre('save', function(next) {
@@ -34,7 +31,6 @@ UserSchema.pre('save', function(next) {
     });
   });
 });
-
 
 UserSchema.methods.comparePassword = function(password, done) {
   bcrypt.compare(password, this.password, (err, isMatch) => {

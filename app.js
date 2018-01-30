@@ -1,7 +1,6 @@
 const express = require('express');
 
 require('dotenv').config();
-require('./controllers/auth.js');
 
 var cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
@@ -13,14 +12,17 @@ const io = require('socket.io')(server);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const Auth = require('./controllers/auth.js')(app);
-const User = require('./models/user');
 
 
 var exphbs = require('express-handlebars');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+const Auth = require('./controllers/auth.js')(app);
+const User = require('./models/user');
+
+
 //app.use(express.static('views'));
 app.use(express.static('public/css'));
 app.use(express.static('public/scripts'));
@@ -30,22 +32,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('./sockets/server-sockets')(io);
 
 let Paragraph = require('./models/paragraph');
+
 mongoose.connect(process.env.MONGO_URI || 'localhost:27017/parasaverDb', (err)=>{
   console.log("Connected to Parasaver DB");
 })
 
+//checkAuth middleware
 var checkAuth = (req, res, next) => {
-  console.log("Checking authentication");
+  //console.log("Checking authentication");
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
   } else {
     var token = req.cookies.nToken;
     var decodedToken = jwt.decode(token, { complete: true }) || {};
     req.user = decodedToken.payload;
+  //  console.log(req.user)
   }
 
   next()
 }
+
+app.use(cookieParser());
 
 app.use(checkAuth);
 
@@ -55,7 +62,7 @@ app.get('/', (req, res) =>  {
   currentUser = req.User;
 
   Paragraph.find({}, (err, paragraphs) =>{
-    res.render('mother-fridge', {paragraphs : paragraphs, currentUser});
+    res.render('mother-fridge', {paragraphs : paragraphs, currentUser : req.user});
   })
 });
 
