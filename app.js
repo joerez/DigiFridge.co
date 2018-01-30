@@ -19,14 +19,13 @@ var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-const Auth = require('./controllers/auth.js')(app);
-const User = require('./models/user');
 
 
 //app.use(express.static('views'));
 app.use(express.static('public/css'));
 app.use(express.static('public/scripts'));
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 require('./sockets/server-sockets')(io);
@@ -66,6 +65,12 @@ app.get('/', (req, res) =>  {
   })
 });
 
+app.get('/fridges/:username', (req, res) => {
+  //const username = req.params.username;
+  const { username } = req.params; // {username:"", id:122344}
+  res.render('personal-fridge', {paragraphs, currentUser : req.user})
+})
+
 //DELETE
 app.delete('/:id', function (req, res) {
   console.log("DELETE magnet")
@@ -92,6 +97,10 @@ app.get('/testfridge', (req, res) => {
 })
 
 //ROUTES controllers
+
+const Auth = require('./controllers/auth.js')(app);
+const User = require('./models/user');
+
 
 server.listen(process.env.PORT || '3000', (err) => {
   console.log("Listening on Port 3000");
