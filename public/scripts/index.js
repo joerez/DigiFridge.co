@@ -143,7 +143,8 @@ $(document).ready(() => {
       let newBox = $('.parabox.draggable.prototype').clone(true);
       /*Clear the word adding form after hitting submit
       to prevent spamming the same word super fast.*/
-      $('#inputone').val(" ");
+      $('#inputone').val("");
+
       socket.emit('newBox', {text : pText, pos : {left : newBox.css('left'), top : newBox.css('top')}})
     });
 
