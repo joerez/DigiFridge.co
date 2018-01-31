@@ -19,7 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "npm install --build-from-service --save bcrypt; node app.js",
+    "start": "rm -rf node_modules && npm install --save bcrypt; npm cache clean; node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
