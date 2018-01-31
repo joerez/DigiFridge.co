@@ -19,7 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm install bcrypt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
