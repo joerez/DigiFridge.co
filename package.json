@@ -19,7 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "npm install bcrypt --build-from-source; node app.js",
+    "start": "npm install reinstall --save bcrypt; node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
