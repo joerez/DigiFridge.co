@@ -17,11 +17,6 @@ $(document).ready(() => {
       })
     })
 
-    //Clear the word adding form after hitting submit
-    //to prevent spamming the same word super fast.
-    $('#subButton').on("click", function() {
-      $('#inputone').val(" ");
-    })
 
 
 
@@ -100,7 +95,7 @@ $(document).ready(() => {
     });
 
 
-  
+
 
 
     //This function makes Selectors pretty when moving.
@@ -146,6 +141,9 @@ $(document).ready(() => {
       let pText = $('#inputone').val();
       console.log(pText);
       let newBox = $('.parabox.draggable.prototype').clone(true);
+      /*Clear the word adding form after hitting submit
+      to prevent spamming the same word super fast.*/
+      $('#inputone').val(" ");
       socket.emit('newBox', {text : pText, pos : {left : newBox.css('left'), top : newBox.css('top')}})
     });
 
