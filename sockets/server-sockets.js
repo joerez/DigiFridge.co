@@ -26,9 +26,13 @@ module.exports = (io) => {
     loadIt(Trash);
 
 /*************************************
-              POSITION UPDATER
+          POSITION UPDATER
 *************************************/
 
+/**
+  # Update position function
+  - updates the position on the server
+*/
 function updatePosition() {
   socket.on('updateBoxPos', (data) => {
     socket.broadcast.emit('updateBoxPos', {id : data.id, pos : data.pos});
@@ -44,6 +48,14 @@ updatePosition(Trash);
 /*************************************
               NEW BOX
 *************************************/
+
+/**
+
+  # createNew  
+
+  - @param model {model} model - whatever
+
+*/
 
     function createNew(model) {
       socket.on('newBox', (data) => {
@@ -95,6 +107,7 @@ updatePosition(Trash);
 
 
 /****************************/
+
 
 
   }); //io.on

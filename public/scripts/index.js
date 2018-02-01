@@ -2,7 +2,19 @@ $(document).ready(() => {
 
     var socket = io.connect('');
 
+    //Variables to put in as paramenters for newBox
+    const newWordBox = $('.parabox.draggable.prototype');
+    const trashCan = $('.trash.draggable.droppable')
+
+
+
     socket.emit('loadBoxes');
+
+
+    /*****************************
+          Load Word Magnets
+    *****************************/
+
     socket.on('loadBoxes', (data) => {
       data.boxes.forEach((box) => {
         let newBox = $('.parabox.draggable.prototype').clone(true);
@@ -16,7 +28,6 @@ $(document).ready(() => {
         makeDrag(newBox);
       })
     })
-
 
 
 
@@ -135,8 +146,12 @@ $(document).ready(() => {
     //end things that scale
 
 
-    //Prevent lineIt form from refreshing page
+    /***************************************
+      ADD MAGNETS TO FRIDGE WITH WORD ADDER BOX
+    ***************************************/
+
     $(".lineIt").on("submit", function (e) {
+      //Prevent lineIt form from refreshing page
       e.preventDefault();
       let pText = $('#inputone').val();
       console.log(pText);
@@ -148,6 +163,7 @@ $(document).ready(() => {
       socket.emit('newBox', {text : pText, pos : {left : newBox.css('left'), top : newBox.css('top')}})
     });
 
+//////////////////////
 
     socket.on('newBox', (data) => {
       let newBox = $('.parabox.draggable.prototype').clone(true);
